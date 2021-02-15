@@ -54,20 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 // Then uncomment the code block below:
 //
-import TurbolinksAdapter from 'vue-turbolinks'
-import Vue from 'vue/dist/vue.esm'
+import Vue from 'vue'
+import Vuetify from 'vuetify' 
+import "vuetify/dist/vuetify.min.css"
+//import store from "./store";
 import App from '../app.vue'
 
-Vue.use(TurbolinksAdapter)
+Vue.use(Vuetify)
+const vuetify = new Vuetify(); 
 
-document.addEventListener('turbolinks:load', () => {
+
+document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
-    el: '#hello',
-    data: () => {
-      return {
-        message: "Can you say hello?"
-      }
-    },
-    components: { App }
-  })
+    vuetify, 
+    //components: { App },
+    //template: "<App />",
+    render: h => h(App)
+  }).$mount()
+  document.body.appendChild(app.$el)
+
+  console.log(app)
 })
+
